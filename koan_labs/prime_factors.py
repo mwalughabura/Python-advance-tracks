@@ -1,8 +1,4 @@
 def largest_prime_factor(args):
-
-	if args == 1:
-		return 1
-
 	test = 2
 	while args > 1:
 		# print test
@@ -11,4 +7,5 @@ def largest_prime_factor(args):
 		else:
 			test += 1
 
+	print test
 	return test

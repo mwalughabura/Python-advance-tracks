@@ -1,0 +1,8 @@
+program: hangman
+
+select a random word from a list
+or 
+select a random word from a file called a words.txt
+
+print out dashes in accordance to the length of the word
+promp the user to give letters of the word
