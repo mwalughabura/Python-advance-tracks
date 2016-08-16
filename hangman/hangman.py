@@ -1,8 +1,67 @@
 import random
 prompt = ">> "
+hangman = {
+
+	"full":"""
+	  ______
+	 |      |
+	 |      0
+	 |     /|\
+	 |     / \
+	 |
+	""",
+	"poll":"""
+	  ______
+	 |
+	 |
+	 |
+	 |
+	 |
+	""",
+	"rope":"""
+	  ______
+	 |      |
+	 |
+	 |
+	 |
+	 |
+	""",
+	"head":"""
+	  ______
+	 |      |
+	 |		0
+	 |
+	 |
+	 |
+	""",
+	"frontLimbs":"""
+	  ______
+	 |      |
+	 |		0
+	 |     / \
+	 |
+	 |
+	""",
+	"body":"""
+	  ______
+	 |      |
+	 |		0
+	 |     /|\
+	 |
+	 |
+	""",
+	"start":"""
+	  
+	 |
+	 |
+	 |
+	 |
+	 |
+	"""
+}
 
 def choose_random_word():
-	words = ["the", "quick", "brown", "fox", "jumped"]
+	words = ["the", "quick", "brown", "fox", "jumped","over","lazy","dog"]
 	return  random.choice(words)
 
 myword = choose_random_word()
@@ -19,21 +78,18 @@ def prompt_and_check_input():
 	answer = raw_input(prompt)
 	print answer
 	dashes = print_dashes(myword)
-	if answer in myword:
-		print "You got it!"
-		listDashes = []
-		getIndices = []
-		i = len(myword)
-		while i > 0:
-			listDashes.append("_ ")
-			if i == answer:
-				getIndices.append(i)
+	myWordInList = list(myword)
+	if answer in myWordInList:
+		listDashes = list("_" * len(myword))
+		i = len(myWordInList) - 1
+		while i >= 0:
+			if myWordInList[i] == answer:
+				listDashes[i] = answer
+				print listDashes[i]
+				print i
 			i-=1
 
-		print getIndices
 		print "".join(listDashes)
-		dashes = dashes.replace("_ ", answer)
-	print dashes
 
 
 print_dashes(myword)
