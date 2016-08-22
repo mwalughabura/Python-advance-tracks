@@ -50,19 +50,19 @@ full = """
 """
 
 def choose_random_word():
-	words = 
+	words = [line.strip() for line in open("words.txt")]
 	return  random.choice(words)
 
 #myword = choose_random_word()
 
 def print_dashes(myword):
-	print myword
+	# print myword
 	dashes = "_" * len(myword)
 	print dashes
 	return dashes
 
 def play_again():
-	play = raw_input("Do you want to play again?\n")
+	play = raw_input("Do you want to play again?(yes or no)\n")
 	if play == "no":
 		print "see you next time"
 	elif play == "yes":
@@ -110,6 +110,7 @@ def prompt_and_check_input():
 				elif trials == 4:
 					print body
 				else:
+					print "The answer was", myword
 					print "Try again"
 					print full
 					play = play_again()
