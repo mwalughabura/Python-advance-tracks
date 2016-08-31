@@ -1,23 +1,37 @@
+import sqlite3
 
-""
-You have just started working at a bank, and you discover that they aren't using any computers to keep track of their
-customers!
+class Customer(object):
+	"""docstring for Customer"""
+	def __init__(self, first_name, second_name, id_no):
+		self.first_name = first_name
+		self.second_name - second_name
+		self.id_no = id_no
+		
 
-Create some Python classes that will keep track of your customers.
-Each customer should have a first and second name, as well as an ID number (4 digits). They also have the option to deposit
-money when they open the account (default amount to start is 0 for most customers)
+def input_cridential():
+	first_name = raw_input("First name: ")
+	second_name = raw_input("Second name: ")
+	id_no = input("your ID: ")
+	while len(str(id_no)) != 4:
+		print "Check out your ID"
+		id_no = input("your ID: ")
 
-All customers can get their balance for free
 
-There should also be methods in your classes for depositing and withdrawing. See the rules for the different customers below.
+def welcome():
+	con = sqlite3.connect("my.db")
+	cur = con.cursor()
+	cur.execute("select sqlite_version();")
 
-Your bank has 3 types of customers:
-Regular -  no minimum balance, starting balance is whatever they put in at the beginning. Charged 50 kes withdrawal fee.
+	data = cur.fetchone()
 
-Preferred - Must maintain a minimum balance of 10000 kes, not charged a withdrawl fee.
+	print data
 
-Student - No minimum balance, no withdrawal fee, but can only withdraw 500 kes at a time.
+	con.close()
+	# print "Hello Welcome to our Bank!\tThe bank of your choice!"
+	# print "\t\tWe are glad to have you here"
 
-If a customer tries to withdraw more than is in his/her account, goes below the minimum balance,
- or if a student tries to withdraw more than 500kes, print out an error message.
- """
+	# print "\n\nTo join you can follow the following step"
+	# input_cridential()
+
+if __name__ == '__main__':
+	welcome()
